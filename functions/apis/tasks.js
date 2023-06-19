@@ -70,7 +70,6 @@ exports.postOneTask = (request, response) => {
 
 /* delete a task */
 exports.deleteTask = (request, response) => {
-	console.log(request.params.taskId);
     const document = db.doc(`/tasks/${request.params.taskId}`);
 	console.log(document);
     document
@@ -89,4 +88,22 @@ exports.deleteTask = (request, response) => {
             //console.error(err);
             return response.status(500).json({ error: err.code });
         });
+};
+
+/* edit a task */
+exports.editTask = ( request, response ) => { 
+    if(request.body.taskId || request.body.createdAt){
+        response.status(403).json({message: 'Not allowed to edit'});
+    }
+    let document = db.collection('tasks').doc(`${request.params.taskId}`);
+    document.update(request.body)
+    .then(()=> {
+        response.json({message: 'Updated successfully'});
+    })
+    .catch((err) => {
+        console.error(err);
+        return response.status(500).json({ 
+                error: err.code 
+        });
+    });
 };

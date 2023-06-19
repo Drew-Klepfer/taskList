@@ -2,8 +2,14 @@ const functions = require('firebase-functions');
 const app = require('express')();
 
 const {
-    getAllTodos
-} = require('./apis/todos')
+    getAllTasks,
+    postOneTask
+} = require('./apis/tasks')
 
-app.get('/todos', getAllTodos);
+app.get('/tasks', getAllTasks);
+//app.post('/todo', postOneTask);
+
+
+
+
 exports.api = functions.https.onRequest(app);

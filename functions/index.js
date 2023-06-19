@@ -7,7 +7,7 @@ const {
 } = require('./apis/tasks')
 
 app.get('/tasks', getAllTasks);
-//app.post('/todo', postOneTask);
+app.post('/task', postOneTask);
 
 
 

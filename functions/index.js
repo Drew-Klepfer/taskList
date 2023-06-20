@@ -8,6 +8,15 @@ const {
     editTask
 } = require('./apis/tasks')
 
+const {
+    loginUser
+} = require('./apis/users')
+
+// Users
+app.post('/login', loginUser);
+
+
+// Tasks
 app.get('/tasks', getAllTasks);
 app.post('/task', postOneTask);
 app.delete('/task/:taskId', deleteTask);
